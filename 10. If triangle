@@ -1,0 +1,10 @@
+a,b,c= list(map(int, input().split(' ')))
+def check(a, b, c):
+    if (a + b <= c) or (a + c <= b) or (b + c <= a) :
+        return False
+    else:
+        return True       
+if check(a, b, c):
+    print("Yes.")
+else:
+    print("No.")
