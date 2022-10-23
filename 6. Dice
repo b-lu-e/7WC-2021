@@ -1,0 +1,6 @@
+R = 1
+numDice = int(input())
+for i in range(numDice):
+    g,t = list(map(int, input().split(' ')))
+    R = R*(g/t)
+print("%.6f"%R)
