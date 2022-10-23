@@ -1,3 +1,4 @@
+import sys
 def nextPos1(position):
     R = position[0]
     C = position[1]
@@ -10,24 +11,28 @@ def nextPos1(position):
 
 def nextPositions(positions):
     combinedPos = []
+    combinedPos2 = []
     for item in positions:
         listpos = nextPos1(item)
         combinedPos = combinedPos + listpos
-    return combinedPos
+    for i in combinedPos:
+        if i not in combinedPos2:
+            combinedPos2.append(i)
+    return combinedPos2
 
 counter = 0
+PavCol,PavRow = list(map(int, input().split(' '))) 
 KevCol,KevRow = list(map(int, input().split(' ')))
-PavCol,PavRow = list(map(int, input().split(' ')))
-
 x = nextPos1((PavRow,PavCol))
-KevRow = KevRow - 1
-if((KevRow,KevCol)in x):
-    print("1")
-while not((KevRow,KevCol)in x)and not(KevRow == 8):
-	KevRow += 1
-	x = nextPositions(x)
-	counter += 1
-if KevRow == 8:
-    print("Not Possible")
+if KevRow == PavRow - 1 and KevCol == PavCol:
+    print("0")
+    sys.exit()
+KevRow = KevRow + 1
+while not((KevRow,KevCol)in x)and not(KevRow >= 8):
+        KevRow += 1
+        x = nextPositions(x)
+        counter += 1
+if KevRow >= 8:
+    print("Not possible")
 else:
-    print(counter)
+    print(counter+1)
