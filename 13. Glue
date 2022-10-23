@@ -1,0 +1,29 @@
+def addGlue(numL):
+    L = []
+    numL2 = numL[1:]
+    digits = len(numL)
+    for i in range(digits-1):
+        singular_translations = []
+        singular_translations = singular_translations + (numL[:(i)])
+        glued = numL[i]+ numL[i+1]
+        print(glued)
+        if int(glued)<=26:
+            singular_translations.append(glued)
+            singular_translations = singular_translations + (numL[(i+2):])
+            L.append(singular_translations)
+    return L
+
+def addGlue2(Lst):
+    glue2x = []
+    for i in Lst:
+        glued2times = addGlue(Lst)
+        glue2x.append(glued2times)
+    return glue2x
+    
+number = int(input())
+numList = [(digit) for digit in str(number)]
+digits = len(numList)
+x = addGlue(numList)
+for i in range(digits - 1):
+    x = addGlue2(x)
+print(x)    
